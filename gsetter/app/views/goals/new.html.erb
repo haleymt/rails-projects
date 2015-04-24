@@ -1,0 +1,14 @@
+<h1> New Goal </h1>
+
+<form action="<%= goals_url %>" method="post">
+  <%= csrf_input %>
+  <label>Body
+    <input type="textarea" name="goal[body]">
+  </label>
+  <label>Make Private
+    <input type="checkbox" name="goal[privacy]" value="true">
+  </label>
+  <br>
+  <input type="submit" value="Create Goal">
+
+</form>

@@ -1,0 +1,11 @@
+<h1> All Goals</h1>
+
+<% @goals.each do |goal| %>
+<ul>
+  <% unless goal.privacy && goal.user != current_user %>
+ <li><%= link_to(goal.body, goal_url(goal))%> - <%= goal.user.username %></li>
+ <% end %>
+</ul>
+<% end %>
+
+<%= link_to("New Goal", new_goal_url) %>

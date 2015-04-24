@@ -1,0 +1,14 @@
+<h1> Sign In </h1>
+
+<form action="<%= session_url %>" method="post">
+  <%= csrf_input %>
+  <label>username
+  <input type="TEXT" name="user[username]" value="">
+  </label>
+
+  <label>password
+  <input type="Password" name="user[password]" value="">
+  </label>
+
+  <input type="submit" value="Sign In">
+</form>

@@ -1,0 +1,11 @@
+<h1><%= @goal.body %></h1>
+<h3>by <%= @goal.user.username %></h3>
+<h4> <%= "private goal" if @goal.privacy %> </h4>
+<% if @goal.user_id == current_user.id %>
+<%= button_to "Edit Goal", edit_goal_url(@goal), method: :get %>
+<%= button_to "Delete Goal", goal_url(@goal), method: :delete %>
+<% end %>
+
+<%= link_to "Goals", goals_url, method: :get %>
+
+<h2>Comments</h2>

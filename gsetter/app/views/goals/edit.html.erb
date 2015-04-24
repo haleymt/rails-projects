@@ -1,0 +1,13 @@
+<h1> Edit Goal </h1>
+
+<form action="<%= goal_url(@goal) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= csrf_input %>
+  <label>Body
+    <input type="textarea" name="goal[body]" value="<%= @goal.body %>">
+  </label>
+
+  <input type="checkbox" name="goal[privacy]" value="true" <%= 'checked' if @goal.privacy %> >Make Private<br>
+  <input type="submit" value="Update Goal">
+
+</form>

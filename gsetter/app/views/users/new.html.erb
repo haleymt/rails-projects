@@ -1,0 +1,14 @@
+<h1>New User</h1>
+
+<form action="<%= users_url %>" method="post">
+  <%= csrf_input %>
+  <label>username
+  <input type="TEXT" name="user[username]" value="">
+  </label>
+
+  <label>password
+  <input type="Password" name="user[password]" value="">
+  </label>
+
+  <input type="submit" value="Create User">
+</form>
