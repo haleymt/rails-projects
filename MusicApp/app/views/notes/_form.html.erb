@@ -1,0 +1,29 @@
+<h3>Leave a nice note:</h3>
+
+<form action="/notes" method="POST">
+  <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="POST">
+
+  <label for="note_track_id">Song</label>
+    <select name="note[track_id]"
+            id="note_track_id">
+      <option value="" selected></option>
+      <% Track.all.each do |track| %>
+      <option value="<%= track.id %>"
+        <%= "selected" if @note.track_id == track.id %>>
+        <%= track.song %>
+        </option>
+      <% end %>
+    </select>
+  <br>
+
+  <textarea name="note[body]"
+            id="note_body">
+  </textarea>
+  <br>
+
+  <input type="submit" value="submit">
+</form>

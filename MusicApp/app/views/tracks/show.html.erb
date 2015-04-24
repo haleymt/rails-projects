@@ -1,0 +1,30 @@
+<h2><center><%= @track.song %></center></h2>
+<h3><center>by <%= link_to @track.album.band.name, band_url(@track.album.band) %><center></h3>
+<br>
+<br>
+<%= ugly_lyrics(@track.lyrics) %>
+<br>
+<br>
+<div><center>(<%= @track.track_type %> Track)</center></div>
+<br>
+<div><strong>NOTES BY USERS:</strong></div>
+  <% if @track.notes.none? %>
+    <p>No notes yet...</p>
+  <% else %>
+  <ul>
+    <% @track.notes.each do |note| %>
+      <% if note.user_id == current_user.id %>
+      <li><%= note.body %> - <%= note.user.email %><%= button_to "Delete note", note_url(note), method: :delete %></li>
+      <% else %>
+      <li><%= note.body %> - <%= note.user.email %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <% end %>
+<%= button_to "Leave a note", new_track_note_url(@track), method: :get %>
+<br>
+<%= button_to "Destroy", track_url(@track), method: :delete %>
+<%= button_to "Edit", edit_track_url(@track), method: :get %>
+
+<br>
+<%= button_to "Back to album", album_url(@track.album), method: :get %>

@@ -1,0 +1,46 @@
+<% action_url = band.persisted? ? album_url(album) : albums_url %>
+<% form_method = band.persisted? ? "PATCH" : "POST" %>
+<% submit_text = band.persisted? ? "Update Album" : "Add Album" %>
+
+<form action="<%= action_url %>" method="POST">
+  <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="<%= form_method %>">
+
+  <label for="album_band_id">Artist</label>
+    <select name="album[band_id]"
+            id="album_band_id">
+      <option value="" selected></option>
+      <% Band.all.each do |band| %>
+      <option value="<%= band.id %>"
+        <%= "selected" if @album.band_id == band.id %>>
+        <%= band.name %>
+        </option>
+      <% end %>
+    </select>
+  <br>
+
+  <label for="album_title">Title</label>
+    <input type="text"
+           name="album[title]"
+           id="album_title"
+           value="<%= @album.title %>">
+  <br>
+
+
+  <% ['Live', 'Studio'].each do |album_type| %>
+  <label>
+    <input type="radio"
+           name="album[album_type]"
+           value="<%= album_type %>"
+           <%= "checked" if @album.album_type == album_type %>>
+      <%= album_type %>
+  </label>
+  <% end %>
+  <br>
+  <br>
+  <input type="submit" value="Add Album">
+
+</form>
